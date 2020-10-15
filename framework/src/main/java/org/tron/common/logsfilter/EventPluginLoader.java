@@ -144,7 +144,7 @@ public class EventPluginLoader {
       return true;
     }
 
-    Set<String> hset = null;
+    Set<String> hset = new HashSet<>();
     if (trigger instanceof ContractLogTrigger) {
       hset = ((ContractLogTrigger) trigger).getTopicList().stream().collect(Collectors.toSet());
     } else if (trigger instanceof ContractEventTrigger) {
